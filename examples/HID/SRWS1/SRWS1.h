@@ -74,7 +74,7 @@ struct SRWS1Data {
 
 class SRWS1 : public HIDUniversal {
 public:
-        SRWS1(USB *p) : HIDUniversal(p) {};
+        SRWS1(uhsl2_USB *p) : HIDUniversal(p) {};
         bool connected() {
                 return HIDUniversal::isReady() && HIDUniversal::VID == STEELSERIES_VID && HIDUniversal::PID == STEELSERIES_SRWS1_PID;
         };

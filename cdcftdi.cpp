@@ -20,7 +20,7 @@ const uint8_t FTDI::epDataInIndex = 1;
 const uint8_t FTDI::epDataOutIndex = 2;
 const uint8_t FTDI::epInterruptInIndex = 3;
 
-FTDI::FTDI(USB *p, FTDIAsyncOper *pasync, uint16_t idProduct) :
+FTDI::FTDI(uhsl2_USB *p, FTDIAsyncOper *pasync, uint16_t idProduct) :
 pAsync(pasync),
 pUsb(p),
 bAddress(0),
@@ -44,7 +44,7 @@ uint8_t FTDI::Init(uint8_t parent, uint8_t port, bool lowspeed) {
         uint8_t buf[constBufSize];
         USB_DEVICE_DESCRIPTOR * udd = reinterpret_cast<USB_DEVICE_DESCRIPTOR*>(buf);
         uint8_t rcode;
-        UsbDevice *p = NULL;
+        uhsl2_UsbDevice *p = NULL;
         EpInfo *oldep_ptr = NULL;
 
         uint8_t num_of_conf; // number of configurations

@@ -17,7 +17,7 @@ e-mail   :  support@circuitsathome.com
 
 #include "hidcomposite.h"
 
-HIDComposite::HIDComposite(USB *p) :
+HIDComposite::HIDComposite(uhsl2_USB *p) :
 USBHID(p),
 qNextPollTime(0),
 pollInterval(0),
@@ -97,7 +97,7 @@ uint8_t HIDComposite::Init(uint8_t parent, uint8_t port, bool lowspeed) {
         uint8_t buf[constBufSize];
         USB_DEVICE_DESCRIPTOR * udd = reinterpret_cast<USB_DEVICE_DESCRIPTOR*>(buf);
         uint8_t rcode;
-        UsbDevice *p = NULL;
+        uhsl2_UsbDevice *p = NULL;
         EpInfo *oldep_ptr = NULL;
         uint8_t len = 0;
 

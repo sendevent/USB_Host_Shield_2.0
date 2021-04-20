@@ -37,7 +37,7 @@ public:
          * Constructor for the PS5USB class.
          * @param  p   Pointer to the USB class instance.
          */
-        PS5USB(USB *p) :
+        PS5USB(uhsl2_USB *p) :
         HIDUniversal(p) {
                 PS5Parser::Reset();
         };

@@ -35,7 +35,7 @@ public:
          * Constructor for the PS4USB class.
          * @param  p   Pointer to the USB class instance.
          */
-        PS4USB(USB *p) :
+        PS4USB(uhsl2_USB *p) :
         HIDUniversal(p) {
                 PS4Parser::Reset();
         };

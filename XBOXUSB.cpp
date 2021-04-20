@@ -20,7 +20,7 @@
 //#define EXTRADEBUG // Uncomment to get even more debugging data
 //#define PRINTREPORT // Uncomment to print the report send by the Xbox 360 Controller
 
-XBOXUSB::XBOXUSB(USB *p) :
+XBOXUSB::XBOXUSB(uhsl2_USB *p) :
 pUsb(p), // pointer to USB class instance - mandatory
 bAddress(0), // device address - mandatory
 bPollEnable(false) { // don't start polling before dongle is connected
@@ -40,7 +40,7 @@ uint8_t XBOXUSB::Init(uint8_t parent, uint8_t port, bool lowspeed) {
         uint8_t buf[sizeof (USB_DEVICE_DESCRIPTOR)];
         USB_DEVICE_DESCRIPTOR * udd = reinterpret_cast<USB_DEVICE_DESCRIPTOR*>(buf);
         uint8_t rcode;
-        UsbDevice *p = NULL;
+        uhsl2_UsbDevice *p = NULL;
         EpInfo *oldep_ptr = NULL;
         uint16_t PID;
         uint16_t VID;

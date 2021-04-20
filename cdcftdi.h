@@ -101,7 +101,7 @@ class FTDI : public USBDeviceConfig, public UsbConfigXtracter {
         static const uint8_t epInterruptInIndex; // InterruptIN  endpoint index
 
         FTDIAsyncOper *pAsync;
-        USB *pUsb;
+        uhsl2_USB *pUsb;
         uint8_t bAddress;
         uint8_t bConfNum; // configuration number
         uint8_t bNumIface; // number of interfaces in the configuration
@@ -117,7 +117,7 @@ class FTDI : public USBDeviceConfig, public UsbConfigXtracter {
         void PrintEndpointDescriptor(const USB_ENDPOINT_DESCRIPTOR* ep_ptr);
 
 public:
-        FTDI(USB *pusb, FTDIAsyncOper *pasync, uint16_t idProduct = FTDI_PID);
+        FTDI(uhsl2_USB *pusb, FTDIAsyncOper *pasync, uint16_t idProduct = FTDI_PID);
 
         uint8_t SetBaudRate(uint32_t baud);
         uint8_t SetModemControl(uint16_t control);

@@ -29,7 +29,7 @@ UHS2_GPIO implements "wiring" style GPIO access. Implemented by Brian Walton bri
 /** @brief  Implement an instance of a UHS2_GPIO object
 *   @param  pUSB Pointer to a UHS2 USB object
 */
-UHS2_GPIO::UHS2_GPIO(USB *pUsb) : m_pUsb(pUsb)
+UHS2_GPIO::UHS2_GPIO(uhsl2_USB *pUsb) : m_pUsb(pUsb)
 {
 }
 

@@ -43,7 +43,7 @@ public:
          * Constructor for the MiniDSP class.
          * @param  p   Pointer to the USB class instance.
          */
-        MiniDSP(USB *p) : HIDUniversal(p) {
+        MiniDSP(uhsl2_USB *p) : HIDUniversal(p) {
         };
 
         /**

@@ -84,7 +84,7 @@ protected:
         static const uint8_t    epDataOutIndex= 2;         // DataOUT endpoint index(MIDI)
 
         /* mandatory members */
-        USB      *pUsb;
+        uhsl2_USB      *pUsb;
         uint8_t  bAddress;
         bool     bPollEnable;
         uint16_t pid, vid;    // ProductID, VendorID
@@ -111,7 +111,7 @@ protected:
         void PrintEndpointDescriptor( const USB_ENDPOINT_DESCRIPTOR* ep_ptr );
 #endif
 public:
-        USBH_MIDI(USB *p);
+        USBH_MIDI(uhsl2_USB *p);
         // Misc functions
         operator bool() { return (bPollEnable); }
         uint16_t idVendor() { return vid; }

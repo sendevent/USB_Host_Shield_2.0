@@ -42,7 +42,7 @@ protected:
         }
 
 public:
-        HIDUniversal(USB *p) : HIDComposite(p) {}
+        HIDUniversal(uhsl2_USB *p) : HIDComposite(p) {}
 
         uint8_t Poll() override;
 

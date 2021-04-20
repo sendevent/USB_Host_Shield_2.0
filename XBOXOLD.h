@@ -49,7 +49,7 @@ public:
          * Constructor for the XBOXOLD class.
          * @param  pUsb   Pointer to USB class instance.
          */
-        XBOXOLD(USB *pUsb);
+        XBOXOLD(uhsl2_USB *pUsb);
 
         /** @name USBDeviceConfig implementation */
         /**
@@ -146,7 +146,7 @@ public:
 
 protected:
         /** Pointer to USB class instance. */
-        USB *pUsb;
+        uhsl2_USB *pUsb;
         /** Device address. */
         uint8_t bAddress;
         /** Endpoint info structure. */

@@ -22,7 +22,7 @@ e-mail   :  support@circuitsathome.com
 const uint8_t ADK::epDataInIndex = 1;
 const uint8_t ADK::epDataOutIndex = 2;
 
-ADK::ADK(USB *p, const char* manufacturer,
+ADK::ADK(uhsl2_USB *p, const char* manufacturer,
         const char* model,
         const char* description,
         const char* version,
@@ -66,7 +66,7 @@ uint8_t ADK::Init(uint8_t parent, uint8_t port, bool lowspeed) {
         USB_DEVICE_DESCRIPTOR * udd = reinterpret_cast<USB_DEVICE_DESCRIPTOR*>(buf);
         uint8_t rcode;
         uint8_t num_of_conf; // number of configurations
-        UsbDevice *p = NULL;
+        uhsl2_UsbDevice *p = NULL;
         EpInfo *oldep_ptr = NULL;
 
         // get memory address of USB device address pool

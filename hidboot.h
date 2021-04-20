@@ -219,7 +219,7 @@ class HIDBoot : public USBHID //public USBDeviceConfig, public UsbConfigXtracter
         };
 
 public:
-        HIDBoot(USB *p, bool bRptProtoEnable = false);
+        HIDBoot(uhsl2_USB *p, bool bRptProtoEnable = false);
 
         virtual bool SetReportParser(uint8_t id, HIDReportParser *prs) {
                 pRptParser[id] = prs;
@@ -253,7 +253,7 @@ public:
 };
 
 template <const uint8_t BOOT_PROTOCOL>
-HIDBoot<BOOT_PROTOCOL>::HIDBoot(USB *p, bool bRptProtoEnable/* = false*/) :
+HIDBoot<BOOT_PROTOCOL>::HIDBoot(uhsl2_USB *p, bool bRptProtoEnable/* = false*/) :
 USBHID(p),
 qNextPollTime(0),
 bPollEnable(false),
@@ -288,7 +288,7 @@ uint8_t HIDBoot<BOOT_PROTOCOL>::Init(uint8_t parent, uint8_t port, bool lowspeed
         uint8_t buf[constBufSize];
         USB_DEVICE_DESCRIPTOR* device;
         uint8_t rcode;
-        UsbDevice *p = NULL;
+        uhsl2_UsbDevice *p = NULL;
         EpInfo *oldep_ptr = NULL;
         uint8_t len = 0;
         //uint16_t cd_len = 0;

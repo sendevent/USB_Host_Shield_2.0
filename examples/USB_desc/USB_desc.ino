@@ -8,16 +8,16 @@
 #endif
 #include <SPI.h>
 
-USB     Usb;
-//USBHub  Hub1(&Usb);
-//USBHub  Hub2(&Usb);
-//USBHub  Hub3(&Usb);
-//USBHub  Hub4(&Usb);
-//USBHub  Hub5(&Usb);
-//USBHub  Hub6(&Usb);
-//USBHub  Hub7(&Usb);
+uhsl2_USB     _myUsb;
+//USBHub  Hub1(&_myUsb);
+//USBHub  Hub2(&_myUsb);
+//USBHub  Hub3(&_myUsb);
+//USBHub  Hub4(&_myUsb);
+//USBHub  Hub5(&_myUsb);
+//USBHub  Hub6(&_myUsb);
+//USBHub  Hub7(&_myUsb);
 
-void PrintAllAddresses(UsbDevice *pdev)
+void PrintAllAddresses(uhsl2_UsbDevice *pdev)
 {
   UsbDeviceAddress adr;
   adr.devAddress = pdev->address.devAddress;
@@ -54,7 +54,7 @@ void setup()
 #endif
   Serial.println("Start");
 
-  if (Usb.Init() == -1)
+  if (_myUsb.Init() == -1)
     Serial.println("OSC did not start.");
 
   delay( 200 );
@@ -87,7 +87,7 @@ void PrintDescriptors(uint8_t addr)
   }
 }
 
-void PrintAllDescriptors(UsbDevice *pdev)
+void PrintAllDescriptors(uhsl2_UsbDevice *pdev)
 {
   Serial.println("\r\n");
   print_hex(pdev->address.devAddress, 8);
@@ -97,12 +97,12 @@ void PrintAllDescriptors(UsbDevice *pdev)
 
 void loop()
 {
-  Usb.Task();
+  _myUsb.Task();
 
-  if ( Usb.getUsbTaskState() == USB_STATE_RUNNING )
+  if ( _myUsb.getUsbTaskState() == USB_STATE_RUNNING )
   {
-    Usb.ForEachUsbDevice(&PrintAllDescriptors);
-    Usb.ForEachUsbDevice(&PrintAllAddresses);
+    _myUsb.ForEachUsbDevice(&PrintAllDescriptors);
+    _myUsb.ForEachUsbDevice(&PrintAllAddresses);
 
     while ( 1 ) { // stop
 #ifdef ESP8266
@@ -116,7 +116,7 @@ uint8_t getdevdescr( uint8_t addr, uint8_t &num_conf )
 {
   USB_DEVICE_DESCRIPTOR buf;
   uint8_t rcode;
-  rcode = Usb.getDevDescr( addr, 0, 0x12, ( uint8_t *)&buf );
+  rcode = _myUsb.getDevDescr( addr, 0, 0x12, ( uint8_t *)&buf );
   if ( rcode ) {
     return ( rcode );
   }
@@ -196,7 +196,7 @@ void printhubdescr(uint8_t *descrptr, uint8_t addr)
     print_hex(descrptr[i], 8);
 
   //for (uint8_t i=1; i<=pHub->bNbrPorts; i++)
-  //    PrintHubPortStatus(&Usb, addr, i, 1);
+  //    PrintHubPortStatus(&_myUsb, addr, i, 1);
 }
 
 uint8_t getconfdescr( uint8_t addr, uint8_t conf )
@@ -207,14 +207,14 @@ uint8_t getconfdescr( uint8_t addr, uint8_t conf )
   uint8_t descr_length;
   uint8_t descr_type;
   uint16_t total_length;
-  rcode = Usb.getConfDescr( addr, 0, 4, conf, buf );  //get total length
+  rcode = _myUsb.getConfDescr( addr, 0, 4, conf, buf );  //get total length
   LOBYTE( total_length ) = buf[ 2 ];
   HIBYTE( total_length ) = buf[ 3 ];
   if ( total_length > 256 ) {   //check if total length is larger than buffer
     printProgStr(Conf_Trunc_str);
     total_length = 256;
   }
-  rcode = Usb.getConfDescr( addr, 0, total_length, conf, buf ); //get the whole descriptor
+  rcode = _myUsb.getConfDescr( addr, 0, total_length, conf, buf ); //get the whole descriptor
   while ( buf_ptr < buf + total_length ) { //parsing descriptors
     descr_length = *( buf_ptr );
     descr_type = *( buf_ptr + 1 );

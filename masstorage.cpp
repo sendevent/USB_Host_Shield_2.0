@@ -226,7 +226,7 @@ again:
 
 ////////////////////////////////////////////////////////////////////////////////
 
-BulkOnly::BulkOnly(USB *p) :
+BulkOnly::BulkOnly(uhsl2_USB *p) :
 pUsb(p),
 bAddress(0),
 bIface(0),
@@ -262,7 +262,7 @@ uint8_t BulkOnly::ConfigureDevice(uint8_t parent, uint8_t port, bool lowspeed) {
         uint8_t buf[constBufSize];
         USB_DEVICE_DESCRIPTOR * udd = reinterpret_cast<USB_DEVICE_DESCRIPTOR*>(buf);
         uint8_t rcode;
-        UsbDevice *p = NULL;
+        uhsl2_UsbDevice *p = NULL;
         EpInfo *oldep_ptr = NULL;
         USBTRACE("MS ConfigureDevice\r\n");
         ClearAllEP();
@@ -337,7 +337,7 @@ uint8_t BulkOnly::Init(uint8_t parent __attribute__((unused)), uint8_t port __at
         USBTRACE("MS Init\r\n");
 
         AddressPool &addrPool = pUsb->GetAddressPool();
-        UsbDevice *p = addrPool.GetUsbDevicePtr(bAddress);
+        uhsl2_UsbDevice *p = addrPool.GetUsbDevicePtr(bAddress);
 
         if(!p)
                 return USB_ERROR_ADDRESS_NOT_FOUND_IN_POOL;

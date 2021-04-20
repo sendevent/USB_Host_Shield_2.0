@@ -82,7 +82,7 @@ protected:
         };
 
 public:
-        HIDComposite(USB *p);
+        HIDComposite(uhsl2_USB *p);
 
         // HID implementation
         bool SetReportParser(uint8_t id, HIDReportParser *prs);

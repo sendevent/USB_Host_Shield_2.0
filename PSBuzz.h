@@ -46,7 +46,7 @@ public:
          * Constructor for the PSBuzz class.
          * @param  p   Pointer to the USB class instance.
          */
-        PSBuzz(USB *p) :
+        PSBuzz(uhsl2_USB *p) :
         HIDUniversal(p) {
                 Reset();
         };

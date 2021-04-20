@@ -55,7 +55,7 @@ public:
          * Pass your dongles Bluetooth address into the constructor,
          * so you are able to pair the controller with a Bluetooth dongle.
          */
-        PS3USB(USB *pUsb, uint8_t btadr5 = 0, uint8_t btadr4 = 0, uint8_t btadr3 = 0, uint8_t btadr2 = 0, uint8_t btadr1 = 0, uint8_t btadr0 = 0);
+        PS3USB(uhsl2_USB *pUsb, uint8_t btadr5 = 0, uint8_t btadr4 = 0, uint8_t btadr3 = 0, uint8_t btadr2 = 0, uint8_t btadr1 = 0, uint8_t btadr0 = 0);
 
         /** @name USBDeviceConfig implementation */
         /**
@@ -265,7 +265,7 @@ public:
 
 protected:
         /** Pointer to USB class instance. */
-        USB *pUsb;
+        uhsl2_USB *pUsb;
         /** Device address. */
         uint8_t bAddress;
         /** Endpoint info structure. */
