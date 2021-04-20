@@ -176,7 +176,7 @@ extern SPI_HandleTypeDef SPI_Handle; // Needed to be declared in your main.cpp
 #endif
 
 // Fix defines on Arduino Due
-#ifdef ARDUINO_SAM_DUE
+#if defined(ARDUINO_SAM_DUE) or defined(ARDUINO_SAMD_NANO_33_IOT)
 #ifdef tokSETUP
 #undef tokSETUP
 #endif
