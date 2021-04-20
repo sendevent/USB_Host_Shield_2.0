@@ -1356,6 +1356,45 @@ MAKE_PIN(P33, (9));
 
 #undef MAKE_PIN
 
+#elif defined(ARDUINO_SAMD_NANO_33_IOT)
+
+#define MAKE_PIN(className, pin) \
+class className { \
+public: \
+  static void Set() { \
+    digitalWrite(pin, HIGH);\
+  } \
+  static void Clear() { \
+    digitalWrite(pin, LOW); \
+  } \
+  static void SetDirRead() { \
+    pinMode(pin, INPUT); \
+  } \
+  static void SetDirWrite() { \
+    pinMode(pin, OUTPUT); \
+  } \
+  static uint8_t IsSet() { \
+    return digitalRead(pin); \
+  } \
+};
+
+MAKE_PIN(P0, 23)
+MAKE_PIN(P1, 22)
+MAKE_PIN(P2, 10)
+MAKE_PIN(P3, 11)
+MAKE_PIN(P4, 7)
+MAKE_PIN(P5, 5)
+MAKE_PIN(P6, 4)
+MAKE_PIN(P7, 6)
+MAKE_PIN(P8, 18)
+MAKE_PIN(P9, 20)
+MAKE_PIN(P10, 21)
+MAKE_PIN(P11, 16)
+MAKE_PIN(P12, 19)
+MAKE_PIN(P13, 17)
+
+#undef MAKE_PIN
+
 #else
 #error "Please define board in avrpins.h"
 
