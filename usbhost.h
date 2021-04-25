@@ -34,6 +34,12 @@ e-mail   :  support@circuitsathome.com
 #include <sys/types.h>
 #endif
 
+#ifdef ARDUINO_SAMD_NANO_33_IOT
+    #define SPI_SPEED 12000000
+#else
+    #define SPI_SPEED 26000000
+#endif
+
 /* SPI initialization */
 template< typename SPI_CLK, typename SPI_MOSI, typename SPI_MISO, typename SPI_SS > class SPi {
 public:
@@ -179,7 +185,7 @@ template< typename SPI_SS, typename INTR >
 void MAX3421e< SPI_SS, INTR >::regWr(uint8_t reg, uint8_t data) {
         XMEM_ACQUIRE_SPI();
 #if defined(SPI_HAS_TRANSACTION)
-        USB_SPI.beginTransaction(SPISettings(26000000, MSBFIRST, SPI_MODE0)); // The MAX3421E can handle up to 26MHz, use MSB First and SPI mode 0
+        USB_SPI.beginTransaction(SPISettings(SPI_SPEED, MSBFIRST, SPI_MODE0)); // The MAX3421E can handle up to 26MHz, use MSB First and SPI mode 0
 #endif
         SPI_SS::Clear();
 
@@ -222,7 +228,7 @@ template< typename SPI_SS, typename INTR >
 uint8_t* MAX3421e< SPI_SS, INTR >::bytesWr(uint8_t reg, uint8_t nbytes, uint8_t* data_p) {
         XMEM_ACQUIRE_SPI();
 #if defined(SPI_HAS_TRANSACTION)
-        USB_SPI.beginTransaction(SPISettings(26000000, MSBFIRST, SPI_MODE0)); // The MAX3421E can handle up to 26MHz, use MSB First and SPI mode 0
+        USB_SPI.beginTransaction(SPISettings(SPI_SPEED, MSBFIRST, SPI_MODE0)); // The MAX3421E can handle up to 26MHz, use MSB First and SPI mode 0
 #endif
         SPI_SS::Clear();
 
@@ -280,7 +286,7 @@ template< typename SPI_SS, typename INTR >
 uint8_t MAX3421e< SPI_SS, INTR >::regRd(uint8_t reg) {
         XMEM_ACQUIRE_SPI();
 #if defined(SPI_HAS_TRANSACTION)
-        USB_SPI.beginTransaction(SPISettings(26000000, MSBFIRST, SPI_MODE0)); // The MAX3421E can handle up to 26MHz, use MSB First and SPI mode 0
+        USB_SPI.beginTransaction(SPISettings(SPI_SPEED, MSBFIRST, SPI_MODE0)); // The MAX3421E can handle up to 26MHz, use MSB First and SPI mode 0
 #endif
         SPI_SS::Clear();
 
@@ -319,7 +325,7 @@ template< typename SPI_SS, typename INTR >
 uint8_t* MAX3421e< SPI_SS, INTR >::bytesRd(uint8_t reg, uint8_t nbytes, uint8_t* data_p) {
         XMEM_ACQUIRE_SPI();
 #if defined(SPI_HAS_TRANSACTION)
-        USB_SPI.beginTransaction(SPISettings(26000000, MSBFIRST, SPI_MODE0)); // The MAX3421E can handle up to 26MHz, use MSB First and SPI mode 0
+        USB_SPI.beginTransaction(SPISettings(SPI_SPEED, MSBFIRST, SPI_MODE0)); // The MAX3421E can handle up to 26MHz, use MSB First and SPI mode 0
 #endif
         SPI_SS::Clear();
 
