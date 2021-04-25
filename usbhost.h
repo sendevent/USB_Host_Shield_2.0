@@ -544,21 +544,7 @@ void MAX3421e< SPI_SS, INTR >::busprobe() {
 /* MAX3421 state change task and interrupt handler */
 template< typename SPI_SS, typename INTR >
 uint8_t MAX3421e< SPI_SS, INTR >::Task(void) {
-        uint8_t rcode = 0;
-        uint8_t pinvalue;
-        //USB_HOST_SERIAL.print("Vbus state: ");
-        //USB_HOST_SERIAL.println( vbusState, HEX );
-        pinvalue = INTR::IsSet(); //Read();
-        //pinvalue = digitalRead( MAX_INT );
-        if(pinvalue == 0) {
-                rcode = IntHandler();
-        }
-        //    pinvalue = digitalRead( MAX_GPX );
-        //    if( pinvalue == LOW ) {
-        //        GpxHandler();
-        //    }
-        //    usbSM();                                //USB state machine
-        return ( rcode);
+    return INTR::IsSet() ? 0 : IntHandler();
 }
 
 template< typename SPI_SS, typename INTR >
